@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { addWorkOrder, refreshWorkOrders } from './store/actions/work-orders'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
-import Home from './pages/home';
-import Walkthrough from './pages/walkthrough';
+
+import routes from './routes/routes';
 
 
 
@@ -26,6 +26,9 @@ const initialWorkOrders = [
   },
 ]
 
+
+
+
 function App() {
   const { workOrders } = useSelector(state => state.workOrders)
   const dispatch = useDispatch()
@@ -43,16 +46,22 @@ function App() {
       "state": false, //true: still active false: done
     }));
     
+
+
+
   }, [])
 
 
   console.log("workOrders :> ", workOrders);
 
   return (
-    <Switch>
-      <Route path="/" exact><Home /></Route>
-      <Route path="/walkthrough" exact><Walkthrough /></Route>
-    </Switch>
+    <>
+      <Switch>
+        {
+          routes.map((route, index) => <Route key={index} path={route.route} exact><route.layout><route.component></route.component></route.layout></Route>)
+        }
+      </Switch>
+    </>
   );
 }
 

@@ -10,6 +10,8 @@ import { BrowserRouter } from 'react-router-dom'
 
 import workOrdersReducer from './store/reducers/work-orders'
 
+
+
 const rootReducer = combineReducers({
   workOrders: workOrdersReducer,
 })
