@@ -1,7 +1,11 @@
 import { useEffect } from 'react'
 import { addWorkOrder, refreshWorkOrders } from './store/actions/work-orders'
 import { useDispatch, useSelector } from 'react-redux'
-// import { Router, Switch, Link, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Home from './pages/home';
+import Walkthrough from './pages/walkthrough';
+
+
 
 const initialWorkOrders = [
   {
@@ -45,9 +49,10 @@ function App() {
   console.log("workOrders :> ", workOrders);
 
   return (
-    <div>
-      <h1>Hello World!</h1>
-    </div>
+    <Switch>
+      <Route path="/" exact><Home /></Route>
+      <Route path="/walkthrough" exact><Walkthrough /></Route>
+    </Switch>
   );
 }
 
