@@ -1,0 +1,36 @@
+.loader-container {
+    margin: 0 auto;
+}
+
+.loader-custom {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #4650E5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    /* margin-left: 20px; */
+}
+
+.loader-sm {
+    width: 15px;
+    height: 15px;
+    margin-left: 20px;
+}
+
+.loader-md {
+    width: 25px;
+    height: 25px;
+}
+
+.loader-lg {
+    width: 50px;
+    height: 50px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
