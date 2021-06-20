@@ -1,0 +1,16 @@
+* {
+    /* background-color: red; */
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    min-width: 100%;
+}
+
+.set {
+    /* background-color: brown; */
+    min-height: 100vh;
+    min-width: 100hw;
+    max-width: 100hw;
+}
