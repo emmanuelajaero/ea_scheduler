@@ -6,4 +6,48 @@
     top: 48;
     right: 0;
     box-shadow: 0px 4px 12px -6px #000;
+    overflow: hidden;
+}
+
+.body {
+    /* position: relative; */
+
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    justify-content: center;
+    padding-inline: 30px;
+}
+
+.forgedDateDiv {
+    display: flex;
+    align-items: center; 
+    background-color: #e0e0e0; 
+    width: fit-content;
+    border-radius: 50px;
+    padding-right: 30px; 
+    height: 35px;
+}
+
+.forgedDateDiv span {
+    z-index: 1;
+    height:35;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+    border-radius: 50px;
+}
+
+
+.TextBox {
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: .875rem;
+    letter-spacing: .2px;
+    font-weight: bold;
+    text-shadow: none;
+
+    display: flex;
+    justify-content: center;
 }
