@@ -7,7 +7,6 @@ function MainLayout(props) {
         <div className={classes.set}>
             <EA_NavBar />
             {props.children}
-            Hello From MainLayout
         </div>
     )
 }

@@ -9,11 +9,12 @@ import  {Provider} from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
 
 import workOrdersReducer from './store/reducers/work-orders'
-
+import triggersReducer from './store/reducers/triggers'
 
 
 const rootReducer = combineReducers({
   workOrders: workOrdersReducer,
+  triggers: triggersReducer,
 })
 
 
