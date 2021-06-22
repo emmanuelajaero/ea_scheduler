@@ -24,7 +24,7 @@ function SidebarNav(props) {
                 <DescriptionIcon  /> <span className={classes.title}>How To</span>
             </IconButton>
 
-            <IconButton onClick={() => window.location.href = "https://github.com/emmanuelajaero/ea_scheduler"} aria-label="add work order" className={[classes.sidebarItem, classes.sidebarItemInactive]}>
+            <IconButton onClick={() => window.location.href = "https://github.com/emmanuelajaero/ea_scheduler/tree/master"} aria-label="add work order" className={[classes.sidebarItem, classes.sidebarItemInactive]}>
             {/* <IconButton aria-label="add work order" className={[classes.sidebarItem, classes.sidebarItemActive]}> */}
                 <PublicIcon  /> <span className={classes.title}>Code Base</span>
             </IconButton>
