@@ -1,0 +1,65 @@
+.sidebarContainer {
+    background-color: #0f1d25;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    box-shadow: 4px 0px 12px -6px #000;
+}
+
+.sidebarItem {
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif!important;
+    font-size: .875rem!important;
+    letter-spacing: .2px!important;
+    text-shadow: none!important;
+    border-radius: 100px!important;
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    padding-top: 0px!important;
+    padding-right: 12px!important;
+    padding-bottom: 0px!important;
+    margin-bottom: 15px!important;
+
+}
+
+.sidebarItem .title {
+    display: none;
+}
+
+.sidebarContainer:hover {
+    position: absolute;
+}
+
+.sidebarContainer:hover .title {
+    display: flex;
+    width: 164px!important;
+    padding-left: 12px!important;
+}
+
+.sidebarContainer:hover .sidebarContainer {
+    padding-right: 26px;
+}
+
+.sidebarContainer:hover .sidebarItemActive {
+    background-color: #56bede57!important;
+}
+
+.sidebarItemInactive {
+    color: #fefefe!important;
+    /* background-color: red!important; */
+}
+
+.sidebarItemInactive:hover {
+    background-color: #132631!important;
+}
+
+.sidebarItemActive {
+    color: #56bfde!important;
+    /* background-color: #56bfde!important; */
+}
+
+.sidebarItemActive:hover {
+    /* color: #c5c0c0!important; */
+    background-color: #56bede57!important;
+}
+
