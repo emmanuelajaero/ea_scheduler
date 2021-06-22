@@ -25,13 +25,14 @@ nav {
 
 
 .listButton {
-    background-color: #56bfde;
-    border-radius: 0;
-    color: white;
+    background-color: #56bfde!important;
+    border-radius: 0!important;
+    color: white!important;
 }
 
 .listButton:hover {
-    color: #56bfde;
+    background-color: white!important;
+    color: #56bfde!important;
 }
 
 .summary {
