@@ -1,0 +1,43 @@
+.workorderTileContainer {
+    /* background-color: lightsalmon; */
+    position: absolute;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px #000;
+    overflow-y: hidden;
+}
+
+.timeTileContainer {
+    position: absolute;
+    width: 100%;
+    /* min-height: 200px; */
+    border: #807979 solid 1px;
+    border-width: 0px 0px 1px 0px;
+}
+
+.textBox {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.textBox_ {
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+}
+
+.tileText_ {
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: .7rem;
+    letter-spacing: .2px;
+    text-shadow: none;
+}
+
+.tileText {
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: .875rem;
+    letter-spacing: .2px;
+    font-weight: bold;
+    text-shadow: none;
+}

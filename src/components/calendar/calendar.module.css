@@ -1,0 +1,36 @@
+.calendarContainer {
+    /* background-color: lawngreen; */
+    width: 100%;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: scroll;
+}
+
+.headerSection{
+    height: 32px;
+    /* min-width: 100%; */
+    border: #807979 solid 1px;
+    border-width: 0px 0px 1px 0px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.staffColumn {
+    background-color: #fff;
+    width: 120px;
+    border: #807979 solid 1px;
+    border-width: 1px 1px 1px 0px;
+    position: relative;
+    height: 1700px;
+}
+
+.tileText {
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: .875rem;
+    letter-spacing: .2px;
+    text-shadow: none;
+}
