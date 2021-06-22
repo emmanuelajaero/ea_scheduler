@@ -333,12 +333,22 @@ function Home(props) {
                         <ChevronRightIcon  />
                     </IconButton>
                     {/* {viewDate.get} */}
-                    <Chip
-                        label={`${daysOfWeek[viewDate.getDay()]}, ${viewDate.getDate()} ${monthsOfYear[viewDate.getMonth()]} ${viewDate.getFullYear()}`}
-                        onClick={()=>{}}
-                        onDelete={()=>{}}
-                        deleteIcon={<EventIcon />}
-                    />
+
+                    <div className={classes.forgedDateDiv}>
+                        
+                        <span>{`${daysOfWeek[viewDate.getDay()]}, ${viewDate.getDate()} ${monthsOfYear[viewDate.getMonth()]} ${viewDate.getFullYear()}`}</span>
+                        <TextField
+                            style={{marginLeft: -130, zIndex:0}}
+                            type="date"
+                            defaultValue={viewDate}
+                            onChange={(date) => {
+                                setViewDate(new Date(date.target.value))
+                            }}
+                            variant="standard"
+                        />
+                    </div>
+
+
                 </div>
             </div>
 

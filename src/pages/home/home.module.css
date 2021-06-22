@@ -10,6 +10,8 @@
 .calendarDateChanger {
     padding-inline: 24px;
     padding-block: 5px;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -22,6 +24,30 @@
 .emailInput {
     width: 100%;
 }
+
+
+.forgedDateDiv {
+    display: flex;
+    align-items: center; 
+    background-color: #e0e0e0; 
+    z-index: -1; 
+    width: fit-content;
+    border-radius: 50px;
+    padding-right: 30px; 
+    height: 35px;
+}
+
+.forgedDateDiv span {
+    z-index: 1;
+    height:35;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+    border-radius: 50px;
+}
+
 
 .homeContainer {
     width: 100%;
