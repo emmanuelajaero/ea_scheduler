@@ -37,12 +37,12 @@ function EA_NavBar() {
             </div>
 
             <div className={classes.summary}>
-                <Badge badgeContent={4} color="primary">
+                {/* <Badge badgeContent={4} color="primary">
                     <LayersClearIcon />
                 </Badge>
                 <Badge badgeContent={10} color="primary">
                     <LayersIcon />
-                </Badge>
+                </Badge> */}
             </div>
         </nav>
     )
