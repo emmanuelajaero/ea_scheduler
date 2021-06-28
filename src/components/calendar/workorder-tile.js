@@ -3,6 +3,8 @@ import React from 'react'
 
 import classes from './workorder-tile.module.css'
 
+
+
 const getFormatedTime = (time) => {
     return {
         hour: Math.trunc(time),
@@ -14,14 +16,12 @@ const getFormatedTime = (time) => {
 
 
 
-const serviceColors = {
-    "Cleaning": "#f29f7a",
-    "Cooking": "#8ada88",
-    "Gardening": "#88a6da"
-}
+const serviceColors = ["#f29f7a", "#8ada88", "#88a6da", "#7e4d4d", "#979174"]
+
 
 
 function WorkorderTile(props) {
+
 
     const  { task } = props
 

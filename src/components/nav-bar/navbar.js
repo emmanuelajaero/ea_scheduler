@@ -25,7 +25,6 @@ function EA_NavBar() {
                     className={classes.listButton}
                     onClick={() => {
                         dispatch(toggleAddWorkOrder());
-                        console.log("List Clicked")
                     }}
                 >
                     <ListIcon  />

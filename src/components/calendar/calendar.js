@@ -5,13 +5,8 @@ import WorkorderTile from './workorder-tile'
 
 
 
-// workingPeriod*60*2
 const EA_Calendar = (props) => {
-    // const { employee, tasks } = props;
-
-    // {Object.keys(workOrders).map(employee => {
-    //     return <EA_Calendar employee={employee} tasks={workOrders[employee]} />
-    // })}
+    console.log("Calendar Map : > ", props)
 
     return (
         <div className={classes.calendarContainer} style={{height: props.workingPeriod*120 +34}} >

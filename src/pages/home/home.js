@@ -5,6 +5,10 @@ import Chip from '@material-ui/core/Chip';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import EventIcon from '@material-ui/icons/Event';
+import axios from 'axios';
+import { toggleAddWorkOrder, saveEmployees, saveServices } from '../../store/actions/triggers'
+import { addWorkOrder, refreshWorkOrders } from '../../store/actions/work-orders'
+
 
 import Loader from '../../components/loader/loader'
 import { Toaster } from 'react-hot-toast';
@@ -14,7 +18,7 @@ import Toast from '../../components/Toast/toast';
 import classes from './home.module.css'
 import SidebarNav from '../../components/sidebar-nav/sidebar-nav';
 import EA_Calendar from '../../components/calendar/calendar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AddWorkOrder from '../../components/add-workorder/add-workorder';
 
 const validateEmail = (email) => {
@@ -22,7 +26,73 @@ const validateEmail = (email) => {
     return re.test(String(email).toLowerCase());
 }
 
-const workOrders = {
+const Time = [
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 9.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 10.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 11.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 12.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 1.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 2.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 3.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 4.0,
+        duration: 1
+    },
+    {
+        service: "",
+        workOrderID: 0,
+        description: "",
+        start: 5.0,
+        duration: 1
+    },
+]
+
+const __workOrders = {
     "Time": [
         {
             service: "",
@@ -273,27 +343,167 @@ const workOrders = {
 const daysOfWeek = ["Sun", "Mon", "Tue", "wed", "Thur", "Fri", "Sat"]
 const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 function Home(props) {
+    const workOrdersFromState = useSelector(state => state.workOrders)
     const { triggers } = useSelector(state => state.triggers)
     const { addWorkOrder } = triggers
+    const dispatch = useDispatch()
 
     const [viewDate, setViewDate] = useState(new Date())
+    const [emailUpdate, setEmailUpdate] = useState("")
     const [workingPeriod, setWorkingPeriod] = useState(17-9)
+    const [workOrders, setWorkOrders] = useState({"Time": Time})
+
+    const [email, setEmail] = useState(localStorage.getItem("EMAIL") || "")
+
+    const updateWorkders = (email) => {
+        const data = JSON.stringify({"email":email, "date": viewDate.toISOString()})
+        console.log("work orders for date :> ")
+
+        const config = {
+          method: 'post',
+          url: `${process.env.REACT_APP_BASE_URL}/get/workorder/by/email`,
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
+        
+        axios(config)
+        .then(function (res) {
+            //   console.log(JSON.stringify(res.data));
+            console.log("work orders for date :> ", res)
+            if(res.data.status == "success"){
+                Toast("Updated Workorders successfully", "success");
+                let newWorkOrders = {"Time": Time}
+
+                res.data.workorders.forEach((workorder, index) => {
+                    try{
+                        newWorkOrders[workorder["employee"]].push(
+                        {
+                            service: workorder["service"],
+                            workOrderID: workorder["workOrderID"],
+                            description: workorder["description"],
+                            start: workorder["start"],
+                            duration: workorder["duration"],
+                            employeeId: workorder["employeeId"]
+                        }
+                    )
+                    } catch(error){
+                        newWorkOrders[workorder["employee"]] = []
+                        newWorkOrders[workorder["employee"]].push(
+                            {
+                                service: workorder["service"],
+                                workOrderID: workorder["workOrderID"],
+                                description: workorder["description"],
+                                start: workorder["start"],
+                                duration: workorder["duration"],
+                                employeeId: workorder["employeeId"]
+                            }
+                        )
+                    }
+                })
+
+                dispatch(refreshWorkOrders(newWorkOrders))
+                // console.log("newWorkOrders :> ", newWorkOrders)
+            }else{
+                Toast(res.data.message, "error");
+            }
+        })
+        .catch(function (error) {
+            Toast(error, "error");
+        });
+
+    }
 
     useEffect(() => {
-        Toast("Setup Completed", "success");
+
+        // dispatch(refreshWorkOrders({"Time": Time}))
+        try {
+            const loadServices = async () => {
+                    const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/get/services`, {})
+                    console.log("services :> ", res)
+                    if(res.data.status == "success"){
+                        dispatch(saveServices(
+                            res.data.services
+                        ))
+                        Toast("Services was fetch successful", "success");
+                    }else{
+                        Toast(res.data.message, "error");
+                    }
+            }
+            loadServices()
+        
+            const loadEmployees = async () => {
+
+                const data = JSON.stringify({"role":"employee"})
+
+                const config = {
+                  method: 'post',
+                  url: `${process.env.REACT_APP_BASE_URL}/get/users/by/role`,
+                  headers: { 
+                    'Content-Type': 'application/json'
+                  },
+                  data : data
+                };
+                
+                axios(config)
+                .then(function (res) {
+                    //   console.log(JSON.stringify(res.data));
+                    console.log("services :> ", res)
+                    if(res.data.status == "success"){
+                        dispatch(saveEmployees(
+                            res.data.users
+                        ))
+                        Toast("Employees were fetched successful", "success");
+                    }else{
+                        Toast(res.data.message, "error");
+                    }
+                })
+                .catch(function (error) {
+                    Toast(error, "error");
+                });
+
+            }
+            loadEmployees()
+        
+        } catch (error) {
+            Toast(error.response, "error");
+            console.log(error.response)
+        }
+
+        if(localStorage.getItem("EMAIL")){
+            updateWorkders(localStorage.getItem("EMAIL"))
+        }
+
     }, [])
+
+    useEffect(() => {
+        updateWorkders(emailUpdate)
+    }, [emailUpdate])
 
     const viewDateChanger = (direction) => {
         setViewDate(prev => {
             prev.setDate(prev.getDate()+direction)
-            console.log(prev)
+            // console.log(prev)
             return new Date(prev)
         })
     }
 
+    // useEffect(() => {
+    //     console.log("addWorkOrder :> ", addWorkOrder)
+    // }, [addWorkOrder])
+
+
     useEffect(() => {
-        console.log("addWorkOrder :> ", addWorkOrder)
-    }, [addWorkOrder])
+        setWorkOrders(workOrdersFromState.workOrders)
+    }, [workOrdersFromState])
+
+    useEffect(() => {
+        setWorkOrders({"Time": Time})
+        if(localStorage.getItem("EMAIL")){
+            updateWorkders(localStorage.getItem("EMAIL"))
+        }
+    }, [viewDate])
 
     return (
     <div className={classes.homeContainer}>
@@ -307,10 +517,19 @@ function Home(props) {
             <div className={classes.standardHorizontal}>
                 <div className={classes.emailSection}>
                     <TextField
-                        label="Email Address"
-                        defaultValue=""
+                        label="Enter Email Address and Press Enter"
+                        defaultValue={email}
                         className={classes.emailInput}
                         variant="outlined"
+                        onKeyUp={(e) => {
+                            if(e.code == "Enter"){
+                                if(validateEmail(email)){
+                                    setEmailUpdate(email)
+                                    localStorage.setItem("EMAIL", email)
+                                }
+                            }
+                        }}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
             </div>
